@@ -1,5 +1,5 @@
 import { Inter, Lexend } from "next/font/google";
-import { classNames } from "@/utils/tailwind";
+import { classNames } from "../utils/tailwind";
 import "@/styles/index.css";
 
 const inter = Inter({

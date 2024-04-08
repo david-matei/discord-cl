@@ -7,6 +7,7 @@ import { AuthError } from "@supabase/supabase-js";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorField from "@/components/ErrorField";
 import { Button } from "@/components/Button";
+import AuthFormHeader from "@/components/AuthFormHeader";
 
 type FormValues = {
   Email: string;
@@ -40,7 +41,8 @@ const Page = () => {
   };
 
   return (
-    <div>
+    <>
+      <AuthFormHeader title="Sign in to your account" />
       <form
         className="flex flex-col gap-4 mt-10"
         onSubmit={handleSubmit(onSubmit)}
@@ -87,7 +89,7 @@ const Page = () => {
         {(loading || success) && <LoadingSpinner className="mt-3" />}
         {error && <ErrorField mainError={error as unknown as string} />}
       </form>
-    </div>
+    </>
   );
 };
 

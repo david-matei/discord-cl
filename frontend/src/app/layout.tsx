@@ -22,11 +22,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={classNames(
-        "bg-slate-900 flex items-center justify-center h-screen",
-        inter.variable,
-        lexend.variable
-      )}
+      className={classNames("bg-white", inter.variable, lexend.variable)}
     >
       <head>
         <title>title</title>

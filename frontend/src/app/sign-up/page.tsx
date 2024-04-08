@@ -9,6 +9,7 @@ import ErrorField from "@/components/ErrorField";
 import { Button } from "@/components/Button";
 import AuthFormHeader from "@/components/AuthFormHeader";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type FormValues = {
   Email: string;
@@ -50,7 +51,13 @@ const Page = () => {
 
   return (
     <>
-      <AuthFormHeader title="Sign up to your account" />
+      <AuthFormHeader title="Sign In to your account" />
+      <Link
+        href="/sign-up"
+        className="font-medium text-sm text-theme-primary hover:text-theme-secondary max-w-fit"
+      >
+        Already have an account? Sign In!
+      </Link>
       <form
         className="flex flex-col gap-4 mt-10"
         onSubmit={handleSubmit(onSubmit)}

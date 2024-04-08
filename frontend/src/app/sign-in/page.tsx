@@ -9,6 +9,7 @@ import ErrorField from "@/components/ErrorField";
 import { Button } from "@/components/Button";
 import AuthFormHeader from "@/components/AuthFormHeader";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type FormValues = {
   Email: string;
@@ -18,7 +19,7 @@ type FormValues = {
 const Page = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<AuthError | null>(null);
+  const [error, setError] = useState("");
   const {
     register,
     handleSubmit,
@@ -33,8 +34,13 @@ const Page = () => {
         email: Email,
         password: Password,
       });
-      setSuccess(true);
-      setError(fault);
+      console.log(fault);
+      if (fault) {
+        setError(fault.message);
+        setSuccess(false);
+      } else {
+        setSuccess(true);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -51,6 +57,12 @@ const Page = () => {
   return (
     <>
       <AuthFormHeader title="Sign in to your account" />
+      <Link
+        href="/sign-up"
+        className="font-medium text-sm text-theme-primary hover:text-theme-secondary max-w-fit"
+      >
+        Don&lsquo;t have an account? Sign Up!
+      </Link>
       <form
         className="flex flex-col gap-4 mt-10"
         onSubmit={handleSubmit(onSubmit)}
@@ -95,7 +107,7 @@ const Page = () => {
           />
         )}
         {(loading || success) && <LoadingSpinner className="mt-3" />}
-        {error && <ErrorField mainError={error as unknown as string} />}
+        {error && <ErrorField mainError={error} />}
       </form>
     </>
   );

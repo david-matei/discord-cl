@@ -1,7 +1,7 @@
 const Page = () => {
   return (
     <div>
-      <span>Pac-Man</span>
+      <span>asd</span>
     </div>
   );
 };

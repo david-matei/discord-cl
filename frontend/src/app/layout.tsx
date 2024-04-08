@@ -23,7 +23,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={classNames(
-        "bg-black flex items-center justify-center h-screen",
+        "bg-slate-900 flex items-center justify-center h-screen",
         inter.variable,
         lexend.variable
       )}

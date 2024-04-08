@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input, { InputType } from "@/components/InputV1";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { supabase } from "@/utils/supabase";
@@ -8,6 +8,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorField from "@/components/ErrorField";
 import { Button } from "@/components/Button";
 import AuthFormHeader from "@/components/AuthFormHeader";
+import { useRouter } from "next/navigation";
 
 type FormValues = {
   Email: string;
@@ -23,6 +24,7 @@ const Page = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({ mode: "all" });
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormValues> = async ({ Email, Password }) => {
     try {
@@ -40,9 +42,15 @@ const Page = () => {
     }
   };
 
+  useEffect(() => {
+    if (success) {
+      router.push("/");
+    }
+  }, [success]);
+
   return (
     <>
-      <AuthFormHeader title="Sign in to your account" />
+      <AuthFormHeader title="Sign up to your account" />
       <form
         className="flex flex-col gap-4 mt-10"
         onSubmit={handleSubmit(onSubmit)}
@@ -82,7 +90,7 @@ const Page = () => {
           <Button
             type="submit"
             className="mt-3 w-full"
-            text="Sign In"
+            text="Sign Up"
             isDisabled={!!errors.Email || !!errors.Password}
           />
         )}
